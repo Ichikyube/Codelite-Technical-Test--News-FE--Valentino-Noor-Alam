@@ -19,7 +19,7 @@ Route::view('/login','auth.login')->middleware('noAuth')->name('login');
 Route::post('/getlogin',[AuthController::class,'getlogin'])->middleware('noAuth')->name('getlogin');
 Route::post('/logout',[AuthController::class,'logout'])->middleware('withAuth')->name('auth.logout');
 Route::view('change-password','auth.change-password')->middleware(['withAuth'])->name('changepassword');
-Route::post('change-password','updatePassword')->middleware(['withAuth'])->name('updatepassword');
+Route::post('update-password',[AuthController::class,'updatePassword'])->middleware(['withAuth'])->name('updatepassword');
 Route::prefix('news')->name('news.')->middleware(['withAuth'])->group(function () {
     Route::view('create','news.create')->name('create');
     Route::get('edit/{id}',[NewsController::class,'edit'])->name('edit');

@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('updatepassword') --}}">
+    <form method="POST" action="{{ route('updatepassword') }}">
         @csrf
 
         <!-- Password -->
