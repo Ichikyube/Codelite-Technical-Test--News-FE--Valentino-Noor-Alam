@@ -34,7 +34,7 @@ class NewsController extends Controller
             $payload,
             $file
         );
-        if ($news['status']) {
+        if (isset($news['status'])) {
             $msg = "data has been saved";
             $status = "success";
         } else {
