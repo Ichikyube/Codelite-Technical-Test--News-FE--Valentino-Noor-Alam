@@ -27,6 +27,14 @@
 
     <body class="antialiased font-inter bg-yellow-50">
         @include('partials.navbar')
+        @if(session('success'))
+            <x-alert.success>{{session('success')}}</x-alert.success>
+        @endif
+
+        @if(session('error'))
+        <x-alert.error>{{session('error')}}</x-alert.error>
+        @endif
+
         <div class="container h-full mx-auto">
                 @yield('body')
         </div>

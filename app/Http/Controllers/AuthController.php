@@ -71,7 +71,7 @@ class AuthController extends Controller
             $payload,
         );
 
-        return redirect('/')->with("status", "Password changed successfully!");
+        return redirect('/')->with("success", "Password changed successfully!");
 
 
         

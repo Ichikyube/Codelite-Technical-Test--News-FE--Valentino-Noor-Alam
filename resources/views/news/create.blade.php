@@ -2,9 +2,17 @@
     <div class="container mx-auto">
 
         <form method="post" action="{{ route('news.post') }}" enctype="multipart/form-data">
-            @foreach ($errors->all() as $error)
-                <p class="alert alert-danger">{{ $error }}</p>
-            @endforeach
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <p><strong>Opps Something went wrong</strong></p>
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li><p class="alert alert-danger">{{ $error }}</p></li>
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
+
             @csrf
             {{-- <select name="Category"> --}}
             <div class="mb-5 w-fit">
