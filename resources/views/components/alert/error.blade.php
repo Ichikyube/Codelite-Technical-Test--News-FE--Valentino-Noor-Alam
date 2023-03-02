@@ -3,7 +3,7 @@
         <div class="flex p-4">
             {{ $slot }}
             <div class="ml-auto">
-                <button type="button"
+                <button type="button" onclick="this.parentElement.style.display='none';"
                     class="inline-flex flex-shrink-0 justify-center items-center h-4 w-4 rounded-md text-white/[.5] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-pink-800 focus:ring-pink-500 transition-all text-sm dark:focus:ring-offset-pink-500 dark:focus:ring-pink-700">
                     <span class="sr-only">Close</span>
                     <svg class="w-3.5 h-3.5" width="16" height="16" viewBox="0 0 16 16" fill="none"
