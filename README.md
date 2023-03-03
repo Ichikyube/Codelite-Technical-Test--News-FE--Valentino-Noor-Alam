@@ -1,16 +1,16 @@
-To run the project, after composer install && npm install, 
+1.  To run the project, after composer install && npm install, 
 
-run 'php artisan serve --port 8001'
+2.  Run 'php artisan serve --port 8001'
 
-in another terminal run 'npm run dev'
+3.  In another terminal run 'npm run dev'
 
-now open the backend part of the project, after 'composer install'
+4.  Now open the backend part of the project, after 'composer install'
 
-run 'php artisan serve', and then setting up your project database on .env.
+5.  Run 'php artisan serve', and then setting up your project database on .env.
 
-In another terminal, run 'php artisan storage:link'
+6.  In another terminal, run 'php artisan storage:link'
 
-after that 'php artisan migrate && php artisan db:seed'
+7.  after that 'php artisan migrate && php artisan db:seed'
 
 
 to login use:
