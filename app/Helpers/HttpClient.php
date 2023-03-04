@@ -34,6 +34,6 @@ class HttpClient{
   
   public static function apiUrl()
   {
-      return "https://be-laranews.up.railway.app/api/";
+      return "http://127.0.0.1:8000/api/";
   }
 }

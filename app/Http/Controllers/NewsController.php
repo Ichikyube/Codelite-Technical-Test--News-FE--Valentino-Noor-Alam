@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleStoreRequest;
 use Illuminate\Http\Request;
 use App\Helpers\HttpClient;
 
@@ -19,7 +20,7 @@ class NewsController extends Controller
         return view('news.create');
     }
 
-    public function store(Request $request)
+    public function store(ArticleStoreRequest $request)
     {
         $payload = [
             "title" => $request->input("title"),
@@ -54,7 +55,7 @@ class NewsController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ArticleStoreRequest $request, $id)
     {
         $payload = $request->only('title','content');
         $file = [
@@ -66,7 +67,7 @@ class NewsController extends Controller
             $payload, $file
         );
 
-        if ($update['status']) {
+        if (isset($update['status'])) {
             $msg = "data updated success";
             $status = "success";
         } else {
@@ -83,7 +84,7 @@ class NewsController extends Controller
             HttpClient::apiUrl()."news/delete/".$id
         );
 
-        if ($delete['status']) {
+        if (isset($delete['status'])) {
             $msg = "data successfully erased";
             $status = "success";
         } else {
