@@ -26,12 +26,12 @@ class HttpClient{
         $client->attach($key, file_get_contents($path), $name);
       }
       // fetch api
-      return $client->post($url, $body)->json();  
+      return $client->post($url, $body)->json();
     }
     // fetch post
     return Http::withHeaders($headers)->post($url, $body)->json();
   }
-  
+
   public static function apiUrl()
   {
       return "http://127.0.0.1:8000/api/";

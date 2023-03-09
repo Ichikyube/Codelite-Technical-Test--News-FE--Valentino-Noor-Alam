@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    
+
     public function getlogin(Request $request)
     {
         $email = $request->email;
@@ -32,7 +32,7 @@ class AuthController extends Controller
         if ($auth['success'] == false) {
             return redirect('/login')->with('error', $auth['message']);
         }
-        
+
         $token = $auth['access_token'];
         $token_type = $auth['token_type'];
 
@@ -43,10 +43,10 @@ class AuthController extends Controller
         return redirect('/')->with('success', "Log in success! Welcome");
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         HttpClient::fetch(
-            "GET", 
+            "GET",
             HttpClient::apiUrl()."logout"
         );
         session()->flush();
@@ -74,7 +74,7 @@ class AuthController extends Controller
         return redirect('/')->with("success", "Password changed successfully!");
 
 
-        
+
 
 
     }

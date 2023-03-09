@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ArticleStoreRequest;
 use Illuminate\Http\Request;
 use App\Helpers\HttpClient;
 
@@ -20,7 +19,7 @@ class NewsController extends Controller
         return view('news.create');
     }
 
-    public function store(ArticleStoreRequest $request)
+    public function store(Request $request)
     {
         $payload = [
             "title" => $request->input("title"),
@@ -45,18 +44,14 @@ class NewsController extends Controller
 
         return redirect()->route('welcome')->with($status, $msg);
     }
-    
+
     public function edit($id)
     {
         $getArticle = HttpClient::fetch("GET", HttpClient::apiUrl()."news/edit/".$id);
         $article = $getArticle['data'];
         return view('news.edit', ['article' => $article]);
-        
+
     }
-
-
-    public function update(ArticleStoreRequest $request, $id)
-    {
 
     /**
      *
@@ -64,56 +59,8 @@ class NewsController extends Controller
      * @param  \App\Models\News  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id):JsonResponse
+    public function update(Request $request, $id)
     {
-        try {
-            $validated = $request->validate([
-                'title' => ['required'],
-                'content' => ['required'],
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->validator->errors()
-            ], 403);
-        }
-
-        try {
-            $post = News::where("id", $id)
-                    ->firstOrFail();
-
-            // trim title and convert it to title case
-            $validated['title'] = Str::of($validated['title'])->trim()->title();
-                
-            if ($request->hasFile('banner')) {
-                $banner = $request->file('banner');
-                $storage = Storage::disk('public');
-
-                if($storage->exists($post->banner))
-                    $storage->delete($post->banner);
-
-                $banner = $request->file('banner');
-                $imageName = date('YmdHis') . "." . $banner->getClientOriginalName();
-                $banner->move(public_path('img'),$imageName);
-                $path =  $request->getSchemeAndHttpHost() ."/img/" . $imageName;
-                $validated['banner'] = $path;
-
-            } else
-            {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Your source is not valid',
-                    'data' => null
-                ], 403);
-            }
-            $post->fill($validated);
-            //$post->update($validated);
-            $post->save();
-            return $this->responseSuccess($post, 'Article Updated Successfully !');
-        }catch (\Exception $e) {
-            return $this->responseError(null, $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
         $payload = $request->only('title','content');
         $file = [
             "banner" => $request->file('banner')

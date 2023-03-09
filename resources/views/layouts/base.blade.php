@@ -21,8 +21,6 @@
         @stack('styles')
         <script src="//unpkg.com/alpinejs" defer></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="{{ asset('build/assets/app-0daaa0d0.css') }}">
-        <script src="{{ asset('build/assets/app-a6d2e222.js') }}"></script>
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
